@@ -1,20 +1,20 @@
-hash: cd6d1b07ea34544d4f4049399e2022f85c0b6561ec057079a885bb1b27ccd7c9
-updated: 2018-12-26T09:18:23.497399+02:00
+hash: 1fc26537ec5042f6e258c4fc329a8e03ab7dfc9bce49e7fe44f30362bcfd9df0
+updated: 2019-08-12T18:46:20.865154292+02:00
 imports:
 - name: github.com/alecthomas/kingpin
   version: 947dcec5ba9c011838740e680966fd7087a71d0d
 - name: github.com/alecthomas/template
-  version: a0175ee3bccc567396460bf5acd36800cb10c49c
+  version: fb15b899a75114aa79cc930e33c46b577cc664b1
   subpackages:
   - parse
 - name: github.com/alecthomas/units
-  version: 2efee857e7cfd4f3d0138cc3cbb1b4966962b93a
+  version: c3de453c63f4bdb4dadffab9805ec00426c505f7
 - name: github.com/beorn7/perks
-  version: 3a771d992973f24aa725d07868b467d1ddfceafb
+  version: 37c8de3658fcb183f997c4e13e8337516ab753e6
   subpackages:
   - quantile
 - name: github.com/cactus/go-statsd-client
-  version: 23713bd9ff66e6949ab5c578ed8de1646631eee3
+  version: 5089fcbbe53257711ef03ed9e8dc0b722c86ab73
   subpackages:
   - statsd
 - name: github.com/davecgh/go-spew
@@ -29,27 +29,27 @@ imports:
 - name: github.com/golang/glog
   version: 44145f04b68cf362d9c4df2182967c2275eaefed
 - name: github.com/golang/mock
-  version: e698a2ea17fee71b248fc2bba82fc544c2017f93
+  version: dd8d2a22370e4c8a334e80ca8477f71356c8e4bb
   subpackages:
   - gomock
 - name: github.com/golang/protobuf
-  version: 1d3f30b51784bec5aad268e59fd3c2fc1c2fe73f
+  version: 4c88cc3f1a34ffade77b79abc53335d1e511f25b
   subpackages:
   - proto
 - name: github.com/google/gofuzz
   version: 44d81051d367757e1c7c6a5a86423ece9afcf63c
 - name: github.com/klauspost/compress
-  version: 30be6041bed523c18e269a700ebd9c2ea9328574
+  version: 730c27ae0bdd9d93c68172603ad47d02f844aaf0
   subpackages:
   - flate
   - gzip
   - zlib
 - name: github.com/klauspost/cpuid
-  version: c640019ed4bda023bac884990967336803e39e3a
+  version: cf2ded4aa83357cbc18366e6e1c64eda3c26eaf2
 - name: github.com/konsorten/go-windows-terminal-sequences
-  version: 5c8c8bd35d3832f5d134ae1e1e375b69a4d25242
+  version: f55edac94c9bbba5d6182a4be46d86a2c9b5b50e
 - name: github.com/matttproud/golang_protobuf_extensions
-  version: c12348ce28de40eed0136aa2b644d0ee0650e56c
+  version: c182affec369e30f25d3eb8cd8a478dee585ae7d
   subpackages:
   - pbutil
 - name: github.com/percona/pmgo
@@ -57,34 +57,33 @@ imports:
   subpackages:
   - pmgomock
 - name: github.com/pmezard/go-difflib
-  version: 792786c7400a136282c1664665ae0a8db921c6c2
+  version: 5d4384ee4fb2527b0a1256a821ebfc92f91efefc
   subpackages:
   - difflib
 - name: github.com/prometheus/client_golang
-  version: 505eaef017263e299324067d40ca2c48f6a2cf50
+  version: 2641b987480bca71fb39738eb8c8b0d577cb1d76
   subpackages:
   - prometheus
   - prometheus/internal
   - prometheus/promhttp
 - name: github.com/prometheus/client_model
-  version: 5c3871d89910bfb32f5fcab2aa4b9ec68e65a99f
+  version: 14fe0d1b01d4d5fc031dd4bec1823bd3ebbe8016
   subpackages:
   - go
 - name: github.com/prometheus/common
-  version: 67670fe90761d7ff18ec1d640135e53b9198328f
+  version: 637d7c34db122e2d1a25d061423098663758d2d3
   subpackages:
   - expfmt
   - internal/bitbucket.org/ww/goautoneg
   - model
 - name: github.com/prometheus/procfs
-  version: 1dc9a6cbc91aacc3e8b2d63db4d2e957a5394ac4
+  version: e6a2613cd6b5963e75dfbccd30f893c2291648fd
   subpackages:
+  - internal/fs
   - internal/util
-  - nfs
-  - xfs
 - name: github.com/Robpol86/logrus-custom-formatter
-  version: 9eff901af4a98a8b64de31b7d0a01ff7dd12b6c7
-  repo: https://github.com/timvaillancourt/logrus-custom-formatter
+  version: caa5f22e3c67a91f0df5ab001c8cff5f41773864
+  repo: https://github.com/ranhuan/logrus-custom-formatter
 - name: github.com/scullxbones/mgo-statsd
   version: 80350e71822057dec1b2f7a63276e2da510c7384
   subpackages:
@@ -92,9 +91,9 @@ imports:
 - name: github.com/sirupsen/logrus
   version: ad15b42461921f1fb3529b058c6786c6a45d5162
 - name: github.com/stretchr/objx
-  version: ef50b0de28773081167c97fc27cf29a0bf8b8c71
+  version: 35313a95ee26395aa17d366c71a2ccf788fa69b6
 - name: github.com/stretchr/testify
-  version: 660f15d67dbb878de0d9d79894f728d691c91b91
+  version: 221dbe5ed46703ee255b1da0dec05086f5035f62
   subpackages:
   - assert
   - mock
@@ -117,7 +116,7 @@ imports:
 - name: github.com/vharitonsky/iniflags
   version: a33cd0b5f3de9ef5e89c90ab2f1ebe3f71ad1ece
 - name: golang.org/x/crypto
-  version: 505ab145d0a99da450461ae2c1a9f6cd10d1f447
+  version: 4def268fd1a49955bfb3dda92fe3db4f924f2285
   subpackages:
   - ssh/terminal
 - name: golang.org/x/net
@@ -129,7 +128,7 @@ imports:
   - idna
   - lex/httplex
 - name: golang.org/x/sys
-  version: b4a75ba826a64a70990f11a225237acd6ef35c9f
+  version: 9eafafc0a87e0fd0aeeba439a4573537970c44c7
   subpackages:
   - unix
   - windows
@@ -185,4 +184,4 @@ imports:
   - third_party/forked/golang/reflect
 testImports:
 - name: github.com/mitchellh/go-ps
-  version: 4fdf99ab29366514c69ccccddab5dc58b8d84062
+  version: 621e5597135b1d14a7d9c2bfc7bc312e7c58463c

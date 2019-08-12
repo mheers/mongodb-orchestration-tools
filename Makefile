@@ -16,6 +16,11 @@ ifneq ($(GIT_BRANCH), master)
 	MONGOD_DOCKERHUB_TAG=$(VERSION)-mongod_$(GIT_BRANCH)
 endif
 
+ifndef $(GOPATH)
+    GOPATH=$(shell go env GOPATH)
+    export GOPATH
+endif
+
 GOARCH?=amd64
 GO_VERSION?=1.11
 GO_VERSION_MAJ_MIN=$(shell echo $(GO_VERSION) | cut -d. -f1-2)

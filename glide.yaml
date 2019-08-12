@@ -3,7 +3,7 @@ import:
 - package: github.com/sirupsen/logrus
   version: ~v1.1.1
 - package: github.com/Robpol86/logrus-custom-formatter
-  repo: https://github.com/timvaillancourt/logrus-custom-formatter
+  repo: https://github.com/ranhuan/logrus-custom-formatter
 - package: github.com/alecthomas/kingpin
   version: ~v2.2.6
 - package: gopkg.in/mgo.v2
