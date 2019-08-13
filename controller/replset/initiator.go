@@ -115,6 +115,14 @@ func (i *Initiator) initUsers(session *mgo.Session) error {
 	return nil
 }
 
+func (i *Initiator) initDB(session *mgo.Session) error {
+	err := user.UpdateUser(session, user.InitDatabaseUser, user.InitDatabase)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
 func (i *Initiator) getLocalhostNoAuthSession() (*mgo.Session, error) {
 	// if enabled, use an insecure SSL connection to avoid hostname validation error
 	// for the server hostname, only for the first connection.
@@ -250,6 +258,12 @@ func (i *Initiator) Run() error {
 	err = i.initUsers(replsetAuthSession)
 	if err != nil {
 		log.WithError(err).Error("Error adding system users")
+		return err
+	}
+
+	err = i.initDB(replsetAuthSession)
+	if err != nil {
+		log.WithError(err).Error("Error adding init-db user")
 		return err
 	}
 

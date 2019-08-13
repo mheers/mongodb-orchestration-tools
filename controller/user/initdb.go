@@ -12,8 +12,25 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package tools
+package user
 
-const (
-	Version = "0.4.3"
+import (
+	"os"
+
+	"github.com/percona/mongodb-orchestration-tools/pkg"
+	"gopkg.in/mgo.v2"
+)
+
+var (
+	initDatabaseUser     = os.Getenv(pkg.EnvMongoDBInitDatabaseUser)
+	initDatabasePassword = os.Getenv(pkg.EnvMongoDBInitDatabasePassword)
+
+	InitDatabase     = os.Getenv(pkg.EnvMongoDBInitDatabase)
+	InitDatabaseUser = &mgo.User{
+		Username: initDatabaseUser,
+		Password: initDatabasePassword,
+		Roles: []mgo.Role{
+			RoleReadWrite,
+		},
+	}
 )

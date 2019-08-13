@@ -38,6 +38,11 @@ const (
 	EnvMongoDBUserAdminUser     = "MONGODB_USER_ADMIN_USER"
 	EnvMongoDBUserAdminPassword = "MONGODB_USER_ADMIN_PASSWORD"
 
+	// initDB user
+	EnvMongoDBInitDatabaseUser     = "MONGODB_INITDB_USERNAME"
+	EnvMongoDBInitDatabasePassword = "MONGODB_INITDB_PASSWORD"
+	EnvMongoDBInitDatabase         = "MONGODB_INITDB"
+
 	// mongodb ssl
 	EnvMongoDBNetSSLEnabled    = "MONGODB_NET_SSL_ENABLED"
 	EnvMongoDBNetSSLInsecure   = "MONGODB_NET_SSL_INSECURE"

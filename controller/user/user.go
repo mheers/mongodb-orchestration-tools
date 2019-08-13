@@ -27,6 +27,7 @@ const (
 	RoleClusterAdmin   mgo.Role = mgo.RoleClusterAdmin
 	RoleClusterMonitor mgo.Role = "clusterMonitor"
 	RoleUserAdminAny   mgo.Role = mgo.RoleUserAdminAny
+	RoleReadWrite      mgo.Role = mgo.RoleReadWrite
 )
 
 type UserChangeData struct {
