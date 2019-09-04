@@ -38,7 +38,7 @@ func GetInitDatabases() []MdbInitDatabase {
 	initDatabases := []EnvInitDatabase{}
 	json.Unmarshal([]byte(initDatabasesStr), &initDatabases)
 
-	dbs := make([]MdbInitDatabase, len(initDatabases))
+	dbs := []MdbInitDatabase{}
 	for _, idb := range initDatabases {
 		dbs = append(dbs, MdbInitDatabase{
 			Name: idb.Name,
