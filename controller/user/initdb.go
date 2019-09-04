@@ -15,22 +15,41 @@
 package user
 
 import (
+	"encoding/json"
 	"os"
 
 	"github.com/percona/mongodb-orchestration-tools/pkg"
 	"gopkg.in/mgo.v2"
 )
 
-var (
-	initDatabaseUser     = os.Getenv(pkg.EnvMongoDBInitDatabaseUser)
-	initDatabasePassword = os.Getenv(pkg.EnvMongoDBInitDatabasePassword)
+type EnvInitDatabase struct {
+	Name     string `json:"name,omitempty"`
+	Username string `json:"username,omitempty"`
+	Password string `json:"password,omitempty"`
+}
 
-	InitDatabase     = os.Getenv(pkg.EnvMongoDBInitDatabase)
-	InitDatabaseUser = &mgo.User{
-		Username: initDatabaseUser,
-		Password: initDatabasePassword,
-		Roles: []mgo.Role{
-			RoleReadWrite,
-		},
+type MdbInitDatabase struct {
+	Name string
+	User mgo.User
+}
+
+func GetInitDatabases() []MdbInitDatabase {
+	initDatabasesStr := os.Getenv(pkg.EnvMongoDBInitDatabases)
+	initDatabases := []EnvInitDatabase{}
+	json.Unmarshal([]byte(initDatabasesStr), &initDatabases)
+
+	dbs := make([]MdbInitDatabase, len(initDatabases))
+	for _, idb := range initDatabases {
+		dbs = append(dbs, MdbInitDatabase{
+			Name: idb.Name,
+			User: mgo.User{
+				Username: idb.Username,
+				Password: idb.Password,
+				Roles: []mgo.Role{
+					RoleReadWrite,
+				},
+			},
+		})
 	}
-)
+	return dbs
+}

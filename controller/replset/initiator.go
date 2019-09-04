@@ -115,8 +115,19 @@ func (i *Initiator) initUsers(session *mgo.Session) error {
 	return nil
 }
 
-func (i *Initiator) initDB(session *mgo.Session) error {
-	err := user.UpdateUser(session, user.InitDatabaseUser, user.InitDatabase)
+func (i *Initiator) initDBs(session *mgo.Session) error {
+	for _, idb := range user.GetInitDatabases() {
+		err := i.initDB(session, idb.User, idb.Name)
+		if err != nil {
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (i *Initiator) initDB(session *mgo.Session, dbuser mgo.User, dbname string) error {
+	err := user.UpdateUser(session, &dbuser, dbname)
 	if err != nil {
 		return err
 	}
@@ -261,7 +272,7 @@ func (i *Initiator) Run() error {
 		return err
 	}
 
-	err = i.initDB(replsetAuthSession)
+	err = i.initDBs(replsetAuthSession)
 	if err != nil {
 		log.WithError(err).Error("Error adding init-db user")
 		return err
