@@ -15,5 +15,5 @@
 package tools
 
 const (
-	Version = "0.4.6"
+	Version = "0.4.7"
 )

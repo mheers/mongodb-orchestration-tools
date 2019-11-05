@@ -30,7 +30,7 @@ GO_TEST_PATH?=./...
 GOCACHE?=
 
 ENABLE_MONGODB_TESTS?=false
-TEST_PSMDB_VERSION?=3.6
+TEST_PSMDB_VERSION?=4.0
 TEST_RS_NAME?=rs
 TEST_MONGODB_DOCKER_UID?=1001
 TEST_ADMIN_USER?=admin
@@ -38,6 +38,7 @@ TEST_ADMIN_PASSWORD?=123456
 TEST_PRIMARY_PORT?=65217
 TEST_SECONDARY1_PORT?=65218
 TEST_SECONDARY2_PORT?=65219
+TEST_INITDBS?='[{"name": "demo", "username": "demouser", "password": "demopassword"},{"name": "demo2", "username": "demouser2", "password": "demopassword2"}]'
 
 TEST_CODECOV?=false
 TEST_GO_EXTRA?=
@@ -86,6 +87,7 @@ test-full-prepare:
 	TEST_PRIMARY_PORT=$(TEST_PRIMARY_PORT) \
 	TEST_SECONDARY1_PORT=$(TEST_SECONDARY1_PORT) \
 	TEST_SECONDARY2_PORT=$(TEST_SECONDARY2_PORT) \
+	TEST_INITDBS=$(TEST_INITDBS) \
 	docker-compose up -d \
 	--force-recreate \
 	--remove-orphans
@@ -102,6 +104,7 @@ test-full: vendor
 	TEST_PRIMARY_PORT=$(TEST_PRIMARY_PORT) \
 	TEST_SECONDARY1_PORT=$(TEST_SECONDARY1_PORT) \
 	TEST_SECONDARY2_PORT=$(TEST_SECONDARY2_PORT) \
+	TEST_INITDBS=$(TEST_INITDBS) \
 	GOCACHE=$(GOCACHE) go test -v -race $(TEST_GO_EXTRA) $(GO_TEST_PATH)
 ifeq ($(TEST_CODECOV), true)
 	curl -s https://codecov.io/bash | bash -s - -t ${CODECOV_TOKEN}
@@ -121,6 +124,7 @@ release: clean
 	-e TEST_PRIMARY_PORT=$(TEST_PRIMARY_PORT) \
 	-e TEST_SECONDARY1_PORT=$(TEST_SECONDARY1_PORT) \
 	-e TEST_SECONDARY2_PORT=$(TEST_SECONDARY2_PORT) \
+	-e TEST_INITDBS=$(TEST_INITDBS) \
 	-i $(NAME)_release
 
 release-clean:

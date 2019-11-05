@@ -31,6 +31,7 @@ const (
 	envMongoDBSecondary2Port = "TEST_SECONDARY2_PORT"
 	envMongoDBAdminUser      = "TEST_ADMIN_USER"
 	envMongoDBAdminPassword  = "TEST_ADMIN_PASSWORD"
+	envMongoDBInitDBs        = "TEST_INITDBS"
 )
 
 var (
@@ -44,6 +45,7 @@ var (
 	MongodbAdminUser      = os.Getenv(envMongoDBAdminUser)
 	MongodbAdminPassword  = os.Getenv(envMongoDBAdminPassword)
 	MongodbTimeout        = time.Duration(10) * time.Second
+	MongoDBInitDBs        = os.Getenv(envMongoDBInitDBs)
 )
 
 // Enabled returns a boolean reflecting whether testing against Mongodb should occur

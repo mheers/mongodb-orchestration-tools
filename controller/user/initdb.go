@@ -16,6 +16,7 @@ package user
 
 import (
 	"encoding/json"
+	"fmt"
 	"os"
 
 	"github.com/percona/mongodb-orchestration-tools/pkg"
@@ -35,6 +36,7 @@ type MdbInitDatabase struct {
 
 func GetInitDatabases() []MdbInitDatabase {
 	initDatabasesStr := os.Getenv(pkg.EnvMongoDBInitDatabases)
+	fmt.Println(initDatabasesStr)
 	initDatabases := []EnvInitDatabase{}
 	json.Unmarshal([]byte(initDatabasesStr), &initDatabases)
 
@@ -51,5 +53,8 @@ func GetInitDatabases() []MdbInitDatabase {
 			},
 		})
 	}
+
+	tmp, _ := json.Marshal(dbs)
+	fmt.Println(string(tmp))
 	return dbs
 }

@@ -28,6 +28,7 @@ import (
 	"github.com/percona/mongodb-orchestration-tools/internal/testutils"
 	"github.com/stretchr/testify/assert"
 	"gopkg.in/mgo.v2"
+	"gopkg.in/mgo.v2/bson"
 )
 
 var (
@@ -149,4 +150,32 @@ func TestControllerReplsetInitiatorPrepareReplset(t *testing.T) {
 	}
 
 	assert.NoError(t, user.RemoveUser(testSession, user.UserAdmin.Username, "admin"))
+}
+
+func checkUserExists(session *mgo.Session, user, db string) error {
+	resp := struct {
+		Username string `bson:"user"`
+		Database string `bson:"db"`
+	}{}
+	err := session.DB("admin").C("system.users").Find(bson.M{
+		"user": user,
+		"db":   db,
+	}).One(&resp)
+	if err != nil {
+		return err
+	}
+	if resp.Username != user || resp.Database != db {
+		return errors.New("user does not match")
+	}
+	return nil
+}
+
+func TestControllerReplsetInitiatorInitDBs(t *testing.T) {
+	testutils.DoSkipTest(t)
+
+	assert.NoError(t, testInitiator.initDBs(testSession), "could not initialize the databases")
+	for _, idb := range user.GetInitDatabases() {
+		assert.NoError(t, checkUserExists(testSession, idb.User.Username, idb.Name), "User "+idb.User.Username+" in database "+idb.Name+" does not exist")
+		assert.NoError(t, user.RemoveUser(testSession, idb.User.Username, idb.Name))
+	}
 }
